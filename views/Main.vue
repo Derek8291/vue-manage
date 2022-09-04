@@ -32,6 +32,7 @@ export default {
 <style lang="scss" scoped>
 .el-container {
   width: 100vw;
+  overflow: hidden;
 }
 .el-header {
   width: 100%;

@@ -15,7 +15,8 @@ export default {
 // @import "./assets/css/reset.css";
 
 #app {
-  width: 100vh;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 </style>

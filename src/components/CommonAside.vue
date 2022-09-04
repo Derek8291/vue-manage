@@ -9,7 +9,7 @@
     @close="handleClose"
     :collapse="isCollapse"
   >
-    <h3 class="main-title">後台通用管理系統</h3>
+    <h3 class="main-title">{{ isCollapse ? "後台" : "後台通用管理系統" }}</h3>
     <el-menu-item
       v-for="item in noChildren"
       :index="item.path"
@@ -92,7 +92,7 @@ export default {
     },
     isCollapse() {
       return this.$store.state.tab.isCollapse;
-    }
+    },
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -114,6 +114,11 @@ export default {
 .main-title {
   padding: 30px 10px 20px 10px;
   color: #fff;
+  white-space: nowrap;
+  text-align: center;
+}
+.el-menu-vertical-demo  {
+  height: 100vh;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
