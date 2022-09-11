@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import CommonAside from "../src/components/CommonAside";
-import CommonHeader from "../src/components/CommonHeader";
+import CommonAside from "../components/CommonAside";
+import CommonHeader from "../components/CommonHeader";
 export default {
   name: "Home",
   components: {
@@ -32,7 +32,6 @@ export default {
 <style lang="scss" scoped>
 .el-container {
   width: 100vw;
-  overflow: hidden;
 }
 .el-header {
   width: 100%;

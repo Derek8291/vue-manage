@@ -53,11 +53,12 @@
 </template>
 
 <script>
+import { getData } from "../../api/data.js";
 export default {
   name: "home",
   data() {
     return {
-      userImg: require("../../src/assets/spon.jpg"),
+      userImg: require("../../assets/spon.jpg"),
       tableLabel: {
         name: "課程",
         todayBuy: "今日購買",
@@ -141,6 +142,27 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    getData()
+      .then((res) => {
+        // console.log(res);
+        const {code, data} = res.data;
+        if(code === 20000) {
+          console.log(data);
+        }
+      })
+      .error((err) => {
+        console.log(err);
+      });
+    // this.$http
+    //   .get("/user?ID=123456")
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   },
 };
 </script>
