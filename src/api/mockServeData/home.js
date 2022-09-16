@@ -9,10 +9,10 @@ export default {
     for (let i = 0; i < 7; i++) {
       List.push(
         Mock.mock({
-          苹果: Mock.Random.float(100, 8000, 0, 0),
-          vivo: Mock.Random.float(100, 8000, 0, 0),
-          oppo: Mock.Random.float(100, 8000, 0, 0),
-          魅族: Mock.Random.float(100, 8000, 0, 0),
+          sony: Mock.Random.float(100, 8000, 0, 0),
+          nokia: Mock.Random.float(100, 8000, 0, 0),
+          蘋果: Mock.Random.float(100, 8000, 0, 0),
+          四星: Mock.Random.float(100, 8000, 0, 0),
           三星: Mock.Random.float(100, 8000, 0, 0),
           小米: Mock.Random.float(100, 8000, 0, 0)
         })
@@ -28,19 +28,19 @@ export default {
             value: 2999
           },
           {
-            name: '苹果',
+            name: 'sony',
             value: 5999
           },
           {
-            name: 'vivo',
+            name: 'nokia',
             value: 1500
           },
           {
-            name: 'oppo',
+            name: '蘋果',
             value: 1999
           },
           {
-            name: '魅族',
+            name: '四星',
             value: 2200
           },
           {
@@ -93,19 +93,19 @@ export default {
         },
         tableData: [
           {
-            name: 'oppo',
+            name: '蘋果',
             todayBuy: 500,
             monthBuy: 3500,
             totalBuy: 22000
           },
           {
-            name: 'vivo',
+            name: 'nokia',
             todayBuy: 300,
             monthBuy: 2200,
             totalBuy: 24000
           },
           {
-            name: '苹果',
+            name: 'sony',
             todayBuy: 800,
             monthBuy: 4500,
             totalBuy: 65000
@@ -123,7 +123,7 @@ export default {
             totalBuy: 34000
           },
           {
-            name: '魅族',
+            name: '四星',
             todayBuy: 350,
             monthBuy: 3000,
             totalBuy: 22000

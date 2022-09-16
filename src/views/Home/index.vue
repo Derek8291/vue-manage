@@ -43,10 +43,23 @@
           </div>
         </el-card>
       </div>
-      <el-card style="height: 280px"> </el-card>
+      <el-card style="height: 280px">
+        <!-- <div style="height: 280px" ref="echarts"></div> -->
+        <Echarts :chartData="echartData.order" style="height: 280px" />
+      </el-card>
       <div class="graph">
-        <el-card style="height: 265px"> </el-card>
-        <el-card style="height: 265px"> </el-card>
+        <el-card style="height: 265px">
+          <!-- <div style="height: 240px" ref="userEcharts"></div> -->
+          <Echarts :chartData="echartData.user" style="height: 265px" />
+        </el-card>
+        <el-card style="height: 265px">
+          <!-- <div style="height: 240px" ref="videoEcharts"></div> -->
+          <Echarts
+            :chartData="echartData.video"
+            :isAxisChart="false"
+            style="height: 265px"
+          />
+        </el-card>
       </div>
     </el-col>
   </el-row>
@@ -54,8 +67,13 @@
 
 <script>
 import { getData } from "../../api/data.js";
+// import * as echarts from "echarts";
+import Echarts from "../../components/Echarts.vue";
 export default {
   name: "home",
+  components: {
+    Echarts,
+  },
   data() {
     return {
       userImg: require("../../assets/spon.jpg"),
@@ -141,28 +159,62 @@ export default {
           color: "#5ab1ef",
         },
       ],
+      echartData: {
+        order: {
+          xData: [],
+          series: [],
+        },
+        user: {
+          xData: [],
+          series: [],
+        },
+        video: {
+          series: [],
+        },
+      },
     };
   },
   mounted() {
     getData()
-      .then((res) => {
-        // console.log(res);
-        const {code, data} = res.data;
-        if(code === 20000) {
-          console.log(data);
+      .then(res => {
+        const { code, data } = res.data;
+        if (code === 20000) {
+          this.tableData = data.tableData;
+          const order = data.orderData;
+          const xData = order.date;
+          const keyArray = Object.keys(order.data[0]);
+          const series = [];
+          keyArray.forEach((key) => {
+            series.push({
+              name: key,
+              data: order.data.map((item) => item[key]),
+              type: "line",
+            });
+          });
+          this.echartData.order.xData = xData
+          this.echartData.order.series = series;
+
+          this.echartData.user.xData = data.userData.map((item) => item.date);
+          this.echartData.user.series = [
+            {
+              name: "新增用戶",
+              data: data.userData.map((item) => item.new),
+              type: "bar",
+            },
+            {
+              name: "活躍用戶",
+              data: data.userData.map((item) => item.active),
+              type: "bar",
+            },
+          ];
+          this.echartData.video.series = [
+            {
+              data: data.videoData,
+              type: "pie",
+            },
+          ];
         }
       })
-      .error((err) => {
-        console.log(err);
-      });
-    // this.$http
-    //   .get("/user?ID=123456")
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   },
 };
 </script>
