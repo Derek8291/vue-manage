@@ -28,7 +28,9 @@
         v-for="(subItem, subIdx) in item.children"
         :key="subItem.path"
       >
-        <el-menu-item :index="subIdx">{{ subItem.label }}</el-menu-item>
+        <el-menu-item @click="changeRoute(subItem)" :index="subIdx">{{
+          subItem.label
+        }}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -105,6 +107,7 @@ export default {
       this.$router.push({
         name: item.name,
       });
+      this.$store.commit("selectMenu", item);
     },
   },
 };
@@ -117,7 +120,7 @@ export default {
   white-space: nowrap;
   text-align: center;
 }
-.el-menu-vertical-demo  {
+.el-menu-vertical-demo {
   height: 100vh;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {

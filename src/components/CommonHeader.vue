@@ -6,8 +6,17 @@
         icon="el-icon-menu"
         size="mini"
         @click="toggleSideMenu"
+        class="menu-btn"
       ></el-button>
-      <h3 class="title">首頁</h3>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          v-for="item in tabsList"
+          :key="item.path"
+          :to="{ path: item.path }"
+          :class="{ active: currentMenu === item.name }"
+          >{{ item.label }}</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
     <div class="r-content">
       <el-dropdown trigger="click" size="mini">
@@ -25,6 +34,7 @@
 
 <script>
 export default {
+  created() {},
   data() {
     return {
       imgUrl: require("../assets/spon.jpg"),
@@ -33,6 +43,19 @@ export default {
   methods: {
     toggleSideMenu() {
       this.$store.commit("collapseMenu");
+    },
+  },
+  computed: {
+    tabsList() {
+      return this.$store.state.tab.tabsList;
+    },
+    currentMenu() {
+      return this.$store.state.tab.currentMenu;
+    },
+  },
+  watch: {
+    $route(val) {
+      this.$store.commit("setMenu", val);
     },
   },
 };
@@ -48,9 +71,26 @@ export default {
   .l-content {
     display: flex;
     align-items: center;
+    .menu-btn {
+      margin-right: 10px;
+    }
     .title {
       color: #fff;
       margin-left: 10px;
+    }
+    ::v-deep .el-breadcrumb__item {
+      &.active {
+        .el-breadcrumb__inner {
+          color: #fff;
+          cursor: none;
+          font-weight: 500;
+        }
+      }
+      .el-breadcrumb__inner {
+        color: #ccc;
+        cursor: pointer;
+        font-weight: normal;
+      }
     }
   }
   .r-content {
