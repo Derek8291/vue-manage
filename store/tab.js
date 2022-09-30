@@ -28,7 +28,6 @@ export default {
       })
       state.tabsList = e;
       let idx = state.tabsList.length;
-      console.log(idx, "idx");
       state.currentMenu = state.tabsList[idx - 1].name;
     },
     setMenu(state, val) {
