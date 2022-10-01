@@ -188,11 +188,12 @@ export default {
         getList(name = '') {
             this.config.loading = true
             name ? (this.config.page = 1) : ''
+                console.log("32131231312");
             getUser({
                 page: this.config.page,
                 name
             }).then(({ data: res }) => {
-                console.log(res, 'res')
+                console.log(res, 'ressss')
                 this.tableData = res.list.map(item => {
                     item.sexLabel = item.sex === 0 ? "女" : "男"
                     return item

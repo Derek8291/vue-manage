@@ -1,7 +1,7 @@
-// mock数据模拟
+// mock數據模擬
 import Mock from 'mockjs'
 
-// 图表数据
+// 圖表數據
 let List = []
 export default {
   getStatisticalData: () => {
@@ -21,7 +21,7 @@ export default {
     return {
       code: 20000,
       data: {
-        // 饼图
+        // 餅圖
         videoData: [
           {
             name: '小米',
