@@ -9,6 +9,16 @@ import './assets/scss/index.scss';
 import './api/mock.js'
 Vue.prototype.$http = http;
 
+router.beforeEach((to, from, next) => {
+  store.commit("getToken");
+  const token = store.state.user.token;
+  if(!token && to.name !== "login") {
+    next({name: "login"});
+  }else {
+    next();
+  }
+})
+
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 new Vue({

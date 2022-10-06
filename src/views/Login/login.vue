@@ -39,7 +39,7 @@
     </el-form>
 </template>
 <script>
-// import Mock from 'mockjs'
+import Mock from 'mockjs'
 import { getMenu } from '../../api/data'
 export default {
     name: 'login',
@@ -77,9 +77,9 @@ export default {
                     this.$message.warning(res.data.message)
                 }
             })
-            // const token = Mock.Random.guid()
-            // this.$store.commit('setToken', token)
-            // this.$router.push({ name: 'home' })
+            const token = Mock.Random.guid()
+            this.$store.commit('setToken', token)
+            this.$router.push({ name: 'home' })
         }
     }
 }
