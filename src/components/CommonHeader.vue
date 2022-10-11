@@ -19,13 +19,13 @@
       </el-breadcrumb>
     </div>
     <div class="r-content">
-      <el-dropdown trigger="click" size="mini">
+      <el-dropdown trigger="click" size="mini" @command="handleClick">
         <span>
           <img class="userIcon" :src="imgUrl" />
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>個人中心</el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item command="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import Cookie from 'js-cookie'
 export default {
   created() {},
   data() {
@@ -43,6 +44,15 @@ export default {
   methods: {
     toggleSideMenu() {
       this.$store.commit("collapseMenu");
+    },
+    handleClick(command) {
+      if(command === "logout") {
+        const isClose = confirm("確定要登出嗎?")
+        if(isClose) {
+          Cookie.remove('token');
+          this.$router.push("/login");
+        }
+      }
     },
   },
   computed: {
