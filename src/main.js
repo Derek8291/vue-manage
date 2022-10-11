@@ -24,5 +24,8 @@ Vue.use(ElementUI);
 new Vue({
   store,
   router,
+  created() {
+    store.commit('addMenu', router);
+  },
   render: h => h(App),
 }).$mount('#app')

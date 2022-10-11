@@ -50,6 +50,7 @@ export default {
         const isClose = confirm("確定要登出嗎?")
         if(isClose) {
           Cookie.remove('token');
+          Cookie.remove('menu');
           this.$router.push("/login");
         }
       }

@@ -69,7 +69,7 @@ export default {
                 console.log(res, 'res')
                 if (res.code === 20000) {
                     this.$store.commit('clearMenu')
-                    this.$store.commit('setMenu', res.data.menu)
+                    this.$store.commit('setSideMenu', res.data.menu)
                     this.$store.commit('setToken', res.data.token)
                     this.$store.commit('addMenu', this.$router)
                     this.$router.push({ name: 'home' })
